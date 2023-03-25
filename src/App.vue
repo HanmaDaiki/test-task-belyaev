@@ -23,7 +23,12 @@ export default {
 },
   data() {
     return {
-      timers: [],
+      timers: [
+        { id: 1, hours: 0, minutes: 2, seconds: 40 },
+        { id: 2, hours: 0, minutes: 25, seconds: 32 },
+        { id: 3, hours: 1, minutes: 30, seconds: 15 },
+        { id: 4, hours: 1, minutes: 20, seconds: 33 },
+      ],
       create: false,
     };
   },

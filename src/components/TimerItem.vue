@@ -1,5 +1,6 @@
 <template>
   <article class="timer">
+    <button v-on:click="deleteTimer(timer.id)" class="timer__delete"></button>
     <h2 :class="start ? 'timer__display' : 'timer__display timer__disabled'">
       <span v-if="hours > 0">{{ hours }}:</span><span v-if="this.minutes > 0 || this.hours > 0">{{ minutes }}:</span>{{ seconds }}
     </h2>
@@ -9,7 +10,7 @@
         :class="start ? 'timer__pause' : 'timer__start'"
       />
       <button
-        v-on:click="stop"
+        v-on:click="updateTimer"
         :class="start ? 'timer__stop' : 'timer__stop timer__disabled'"
       />
     </div>
@@ -32,9 +33,6 @@ export default {
       this.start = this.start ? false : true;
       this.startTimer();
     },
-    stop() {
-      this.deleteTimer(this.timer.id);
-    },
     startTimer() {
       if (this.start) {
         this.interval = setInterval(() => {
@@ -52,9 +50,15 @@ export default {
         clearInterval(this.interval);
       }
     },
+    updateTimer() {
+      this.hours = this.timer.hours;
+      this.minutes = this.timer.minutes;
+      this.seconds = this.timer.seconds;
+    }
   },
   props: {
     deleteTimer: Function,
+    timers: Array,
     timer: Object,
   },
 };
@@ -71,6 +75,30 @@ export default {
   align-items: center;
   justify-content: space-between;
   background-color: #696969;
+  position: relative;
+}
+
+.timer__delete {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 15px;
+  height: 15px;
+  color: #c597a2d5;
+  font-size: 15px;
+  background-image: url(../assets/images/icon-add.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: all 0.2s ease-in-out;
+  transform: rotate(45deg);
+}
+
+.timer__delete:hover {
+  transform: scale(1.2) rotate(45deg);
 }
 
 .timer__display {

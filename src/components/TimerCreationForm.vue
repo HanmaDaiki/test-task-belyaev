@@ -1,23 +1,31 @@
 <template>
   <form class="timer-creation-form" @submit.prevent="() => addNewTimer(this.hours, this.minutes, this.seconds)">
-    <input
-      @input="hours = $event.target.value"
-      class="timer-creation-form__input"
-      v-bind:value="hours"
-      placeholder="Часы"
-      type="number"
-      v-bind:min="0"
-      v-bind:max="999"
-    />
-    <input
-      @input="minutes = $event.target.value"
-      class="timer-creation-form__input"
-      v-bind:value="minutes"
-      placeholder="Минуты"
-      type="number"
-      v-bind:min="0"
-      v-bind:max="60"
-    />
+    <label class="timer-creation-form__label">
+      Часы
+      <input
+        @input="hours = $event.target.value"
+        class="timer-creation-form__input"
+        v-bind:value="hours"
+        placeholder="Часы"
+        type="number"
+        v-bind:min="0"
+        v-bind:max="999"
+      />
+    </label>
+    <label class="timer-creation-form__label">
+      Минуты
+      <input
+        @input="minutes = $event.target.value"
+        class="timer-creation-form__input"
+        v-bind:value="minutes"
+        placeholder="Минуты"
+        type="number"
+        v-bind:min="0"
+        v-bind:max="60"
+      />
+    </label>
+    <label class="timer-creation-form__label">
+      Секунды
     <input
       @input="seconds = $event.target.value"
       class="timer-creation-form__input"
@@ -27,6 +35,7 @@
       v-bind:min="0"
       v-bind:max="60"
     />
+    </label>
     <button type="submit" class="timer-creation-form__button">Создать</button>
   </form>
 </template>
@@ -35,9 +44,9 @@ export default {
   name: 'TimerCreationForm',
   data() {
     return {
-      hours: '',
-      minutes: '',
-      seconds: '',
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
     }
   },
   props: {
@@ -64,9 +73,9 @@ export default {
   background-color: transparent;
   border: 1px solid #fff;
   color: #fff;
-  width: 100%;
   text-align: center;
   outline: none;
+  width: 100px;
 }
 
 .timer-creation-form__input::placeholder {
@@ -86,5 +95,11 @@ export default {
 
 .timer-creation-form__button:hover {
   transform: scale(1.1);
+}
+
+.timer-creation-form__label {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 </style>
