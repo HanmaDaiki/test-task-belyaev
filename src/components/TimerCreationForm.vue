@@ -35,9 +35,9 @@ export default {
   name: 'TimerCreationForm',
   data() {
     return {
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
+      hours: '',
+      minutes: '',
+      seconds: '',
     }
   },
   props: {
@@ -70,7 +70,8 @@ export default {
 }
 
 .timer-creation-form__input::placeholder {
-  color: #fff;
+  color: #9e9e9e;
+  text-align: start;
 }
 
 .timer-creation-form__button {
